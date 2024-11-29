@@ -104,3 +104,18 @@ document.getElementById("ShowFrom").addEventListener("click", function () {
 document.getElementById("hideForm").addEventListener("click", function () {
     document.getElementById("addForm").classList.add("hidden");
 });
+
+function addStates(event) {
+    let selectedPosition = event.target.value
+    if (selectedPosition === 'GK') {
+        document.getElementById('playerStats').classList.add("hidden")
+        document.getElementById("GKstats").classList.remove("hidden");
+        console.log("1")
+    }
+    else {
+        document.getElementById('playerStats').classList.remove("hidden")
+        document.getElementById("GKstats").classList.add("hidden");
+    }
+
+}
+document.getElementById('Position').addEventListener('change', addStates)
