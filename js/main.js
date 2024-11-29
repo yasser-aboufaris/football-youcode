@@ -95,3 +95,12 @@ fetch("./players.json")
         }
     })
 
+
+///////////////////////////
+document.getElementById("ShowFrom").addEventListener("click", function () {
+    document.getElementById("addForm").classList.remove("hidden");
+});
+
+document.getElementById("hideForm").addEventListener("click", function () {
+    document.getElementById("addForm").classList.add("hidden");
+});
