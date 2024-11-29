@@ -104,7 +104,122 @@ document.getElementById("ShowFrom").addEventListener("click", function () {
 document.getElementById("hideForm").addEventListener("click", function () {
     document.getElementById("addForm").classList.add("hidden");
 });
+function createPlayer(event) {
+    let name = document.getElementById('addedPlayerName').value;
+    let position = document.getElementById('Position').value;//position du joueur
+    let playerImage = document.getElementById('playerImgUrl').value;
+    let playerFlag = document.getElementById('countryUrl').value;
+    let playerLogo = document.getElementById('teamUrl').value;
+    ////////////////////////////////////////////////////////////////
+    let paceStates = document.getElementById('Pace').value;
+    let shootStates = document.getElementById('shooting').value;
+    let passStates = document.getElementById('passing').value;
+    let dribStates = document.getElementById('dribbling').value;
+    let defStates = document.getElementById('defending').value;
+    let phyStates = document.getElementById('physical').value;
+    ////////////////////////////////////////////////////////////////    
+    let divStates = document.getElementById('diving').value;
+    let handStates = document.getElementById('handling').value;
+    let kickStates = document.getElementById('kicking').value;
+    let refStates = document.getElementById('reflex').value;
+    let spdStates = document.getElementById('speed').value;
+    let posStates = document.getElementById('positioning').value;
 
+    //let rating = document.getElementById('').value;
+    console.log("1")
+    let createdCard = `
+    <div class="relative w-36 h-52">
+        <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
+            class="absolute inset-0 w-full h-full object-cover" />
+
+ 
+        <div class="absolute inset-0 mb-2 flex flex-col items-center justify-center text-white p-2">
+
+            <div class="flex items-center">
+                <div class="flex flex-col justify-between items-center w-[10%] h-5">
+                    <span class="text-sm font-bold">
+                        <span class="text-yellow-600"></span>90</span>
+                    <span class="text-S font-semibold">${position}</span>
+                </div>
+
+
+                <div class="">
+                    <img src="${playerImage}" alt="Player"
+                        class="w-16 h-16 rounded-md" />
+                </div>
+            </div>
+
+
+            <h3 class="text-center text-sm font-bold">${name}</h3>
+
+
+            <div class="flex justify-between items-center w-[30%]">
+                <div class="flex items-center">
+                    <img src="${playerFlag}" alt="Nationality" class="w-4 h-4 rounded-sm" />
+                </div>
+                <img src="${playerLogo}" alt="Club" class="w-5 h-5" />
+            </div>
+
+
+            ${position === "GK" ? ` <div class="flex flex-col text-xs w-full px-2 h-16">
+                <div class="flex justify-around">
+                    <span>DIV:</span>
+                    <span>${divStates}</span>
+
+                    <span>HAN:</span>
+                    <span>${handStates}</span>
+                </div>
+                <div class="flex justify-around">
+                    <span>KIC:</span>
+                    <span>${kickStates}</span>
+
+                    <span>REF:</span>
+                    <span>${refStates}</span>
+                </div>
+                <div class="flex justify-around">
+                    <span>SPE:</span>
+                    <span>${spdStates}</span>
+
+                    <span>PHY:</span>
+                    <span>${posStates}</span>
+                </div>`
+                
+                
+                : 
+
+
+                
+                `<div class="flex flex-col text-xs w-full px-2 h-16">
+                <div class="flex justify-around">
+                    <span>PAC:</span>
+                    <span>${paceStates}</span>
+
+                    <span>SHO:</span>
+                    <span>${shootStates}</span>
+                </div>
+                <div class="flex justify-around">
+                    <span>PAS:</span>
+                    <span>${passStates}</span>
+
+                    <span>DRI:</span>
+                    <span>${dribStates}</span>
+                </div>
+                <div class="flex justify-around">
+                    <span>DEF:</span>
+                    <span>${defStates}</span>
+
+                    <span>PHY:</span>
+                    <span>${phyStates}</span>
+                </div>
+            </div>`}
+            
+        </div>
+  `;
+
+    document.getElementById('bank').insertAdjacentHTML("beforeEnd", createdCard);
+}
+ 
+document.getElementById('playedCreate').addEventListener('click', createPlayer)
 function addStates(event) {
     let selectedPosition = event.target.value
     if (selectedPosition === 'GK') {
