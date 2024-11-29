@@ -4,7 +4,7 @@ fetch("./players.json")
     .then((data) => {
         for (let i = 0; i < data.players.length; i++) {
             let jsonCartedHtml = `
-    <div class="relative w-36 h-52">
+    <div class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-110">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -15,7 +15,7 @@ fetch("./players.json")
                 <div class="flex flex-col justify-between items-center w-[10%] h-5">
                     <span class="text-sm font-bold">
                         <span class="text-yellow-600"></span>${data.players[i].rating}</span>
-                    <span class="text-S font-semibold">${data.players[i].position}</span>
+                    <span class="text-S font-semibold shadow-text">${data.players[i].position}</span>
                 </div>
 
 
@@ -128,7 +128,7 @@ function createPlayer(event) {
     //let rating = document.getElementById('').value;
     console.log("1")
     let createdCard = `
-    <div class="relative w-36 h-52">
+    <div class="relative w-36 h-52 player ${position} hover:scale-125">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -144,7 +144,7 @@ function createPlayer(event) {
 
 
                 <div class="">
-                    <img src="${playerImage}" alt="Player"
+                    <img src="${playerImage}" alt=""
                         class="w-16 h-16 rounded-md" />
                 </div>
             </div>
@@ -234,3 +234,19 @@ function addStates(event) {
 
 }
 document.getElementById('Position').addEventListener('change', addStates)
+
+function addToField () {
+    console.log(1);
+    let bank = document.querySelectorAll('#bank .player');
+    let tmparr = Array.from(bank);
+    
+    tmparr.forEach((element) => {
+        element.classList.add('hidden');
+    })
+    
+    //let player = document.getElementsByClassName('player')
+
+    console.log(bank);
+}
+let testButton = document.getElementById('addd')
+testButton.addEventListener("click", addToField);
