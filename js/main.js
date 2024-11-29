@@ -1,9 +1,9 @@
 
 fetch("./players.json")
-  .then((response) => response.json())
-  .then((data) => {
-    for(let i = 0; i <7; i++){
-    let jsonCartesHtml =`
+    .then((response) => response.json())
+    .then((data) => {
+        for (let i = 0; i < data.players.length; i++) {
+            let jsonCartedHtml = `
     <div class="relative w-36 h-52">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
@@ -37,7 +37,35 @@ fetch("./players.json")
             </div>
 
 
-            <div class="flex flex-col text-xs w-full px-2 h-16">
+            ${data.players[i].position === "GK" ? ` <div class="flex flex-col text-xs w-full px-2 h-16">
+                <div class="flex justify-around">
+                    <span>PAC:</span>
+                    <span>${data.players[i].diving}</span>
+
+                    <span>SHO:</span>
+                    <span>${data.players[i].handling}</span>
+                </div>
+                <div class="flex justify-around">
+                    <span>PAS:</span>
+                    <span>${data.players[i].kicking}</span>
+
+                    <span>DRI:</span>
+                    <span>${data.players[i].reflexes}</span>
+                </div>
+                <div class="flex justify-around">
+                    <span>DEF:</span>
+                    <span>${data.players[i].speed}</span>
+
+                    <span>PHY:</span>
+                    <span>${data.players[i].positioning}</span>
+                </div>`
+                
+                
+                : 
+
+
+
+                `<div class="flex flex-col text-xs w-full px-2 h-16">
                 <div class="flex justify-around">
                     <span>PAC:</span>
                     <span>${data.players[i].pace}</span>
@@ -59,16 +87,11 @@ fetch("./players.json")
                     <span>PHY:</span>
                     <span>${data.players[i].physical}</span>
                 </div>
-            </div>
-        </div>'
+            </div>`}
+            
+        </div>
   `
-  document.getElementById('bank').insertAdjacentHTML("beforeEnd", jsonCartesHtml);
-  }
-})
+            document.getElementById('bank').insertAdjacentHTML("beforeEnd", jsonCartedHtml);
+        }
+    })
 
-
-///////////////////////////
-// let form = document.getElementById('addForm');
-// let showFromButton = document.getElementById('showFrom');
-// let hideFromButton = document.getElementById('hideFrom');
-// function 

@@ -16,7 +16,8 @@
                 <li class="font-bold text flex text-3xl ">
                     <div class="text-gray-900">ULTIMATE</div><span class="font-light">TEAM</span>
                 </li>
-                <li> <button class=" bg-slate-200 p-2 rounded-lg hover:scale-110"> Create Player </button></li>
+                <li> <button class=" bg-slate-200 p-2 rounded-lg hover:scale-110" id="ShowFrom"> Create Player </button>
+                </li>
                 <li class="pt-2"> <input type="text" name="" placeholder=" search Player" id=""> </li>
             </ul>
         </div>
@@ -107,20 +108,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="w[25%] h-96 bg-orange-700"></div>
+
             </div>
         </div>
-        <div id="addForm" class="absolute mt-[8rem] inset-0 w-full h-screen flex justify-end items-center hidden">
-            <div class="flex flex-col bg-black w-[30.225rem] h-[44rem] mb-3 md:h-[40rem] mt-2 mr-4 rounded-2xl">
+        <div id="addForm" class="absolute mt-[8rem] inset-0 w-full h-fit flex justify-end items-center hidden">
+            <div class="flex flex-col bg-black w-[30rem] h-[44rem] mb-3 md:h-[40rem] mt-2 mr-4 rounded-2xl">
                 <div class="flex flex-col m-4">
-                    <label for="teamPlan" class="text-white text-lg font-semibold mb-2">Player Name</label>
-                    <input class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
-                        type="number">
+                    <label for="addedPlayerName" class="text-white text-lg font-semibold mb-2">Player Name</label>
+                    <input
+                        class="bg-[#2b2a2a] text-white hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                        type="text" id="addedPlayerName" placeholder=" Name">
                 </div>
-               
-                <div class="flex flex-col m-4 ">
-                    <label for="defensiveApproach" class="text-white text-lg font-semibold mb-2">Position</label>
-                    <select id="defensiveApproach" name="defensiveApproach"
+                <!-- ///////////////////////////////////////////// -->
+                <label for="playerImgUrl">Player Image URL:</label>
+                <input type="url" id="playerImgUrl" name="playerImgUrl" placeholder="Enter player image URL" required>
+
+
+                <label for="teamUrl">Team URL:</label>
+                <input type="url" id="teamUrl" name="teamUrl" placeholder="Enter team logo URL" required>
+
+
+                <label for="countryUrl">Country URL:</label>
+                <input type="url" id="countryUrl" name="countryUrl" placeholder="Enter country URL" required>
+
+                <!-- ///////////////////////////////////////////// -->
+                <div class="flex flex-col m-4 mt-2">
+                    <label for="Position" class="text-white text-lg font-semibold mb-2">Position</label>
+                    <select id="Position" name="Position"
                         class="border-2 border-gray-700 rounded-lg p-2 bg-transparent text-white">
                         <option value="" disabled selected hidden>Select Position</option>
                         <option class="text-black">ST</option>
@@ -133,20 +147,20 @@
                         <option class="text-black">GK</option>
                     </select>
                 </div>
-
-                <div class="flex flex-col m-4 gap-6 ">
+                <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div class="flex flex-col m-4 gap-4 " id="playerStats">
                     <label class="text-white text-lg font-semibold mb-2 text-center"> Player Statique</label>
                     <div class="flex justify-center  gap-24">
                         <div class="flex flex-col justify-start">
                             <label for="" class="text-white text-lg font-semibold mb-2">pace:</label>
                             <input
-                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 " id="Pace"
                                 type="number">
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="teamPlan" class="text-white text-lg font-semibold mb-2">shooting:</label>
                             <input
-                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 " id="shooting"
                                 type="number">
                         </div>
                     </div>
@@ -154,12 +168,12 @@
                         <div class="flex flex-col justify-start">
                             <label for="" class="text-white text-lg font-semibold mb-2">passing:</label>
                             <input
-                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8" id="passing"
                                 type="number">
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="teamPlan" class="text-white text-lg font-semibold mb-2">dribbling:</label>
-                            <input
+                            <input id="dribbling"
                                 class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
                                 type="number">
                         </div>
@@ -167,13 +181,62 @@
                     <div class="flex justify-center gap-24">
                         <div class="flex flex-col justify-start">
                             <label for="" class="text-white text-lg font-semibold mb-2">defending:</label>
-                            <input
+                            <input id="defending"
                                 class="bg-[#2b2a2a] border hover:border-green-600 border-3 border-gray-600 rounded-xl h-8 "
                                 type="number">
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="teamPlan" class="text-white text-lg font-semibold mb-2">physical:</label>
-                            <input
+                            <input id="physical"
+                                class="bg-[#2b2a2a] border hover:border-green-600 border-3 border-gray-600 rounded-xl h-8 "
+                                type="number">
+                        </div>
+                    </div>
+                    <!-- /:///////////////////////////////////////////////////////////// -->
+
+
+
+                </div>
+                <div class="flex flex-col mb-2 gap-4 hidden " id="GKstats">
+                    <label class="text-white text-lg font-semibold mb-2 text-center"> Player Statique</label>
+                    <div class="flex justify-center  gap-24">
+                        <div class="flex flex-col justify-start">
+                            <label for="" class="text-white text-lg font-semibold mb-2">diving:</label>
+                            <input id="diving"
+                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                                type="number">
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="teamPlan" class="text-white text-lg font-semibold mb-2">handling:</label>
+                            <input id="handling"
+                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                                type="number">
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-24">
+                        <div class="flex flex-col justify-start">
+                            <label for="" class="text-white text-lg font-semibold mb-2">kicking:</label>
+                            <input id="kicking"
+                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                                type="number">
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="teamPlan" class="text-white text-lg font-semibold mb-2">reflex:</label>
+                            <input id="reflex"
+                                class="bg-[#2b2a2a] hover:border-green-600 border border-3 border-gray-600 rounded-xl h-8 "
+                                type="number">
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-24">
+                        <div class="flex flex-col justify-start">
+                            <label for="" class="text-white text-lg font-semibold mb-2">speed:</label>
+                            <input id="speed"
+                                class="bg-[#2b2a2a] border hover:border-green-600 border-3 border-gray-600 rounded-xl h-8 "
+                                type="number">
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="teamPlan" class="text-white text-lg font-semibold mb-2">positioning:</label>
+                            <input id="positioning"
                                 class="bg-[#2b2a2a] border hover:border-green-600 border-3 border-gray-600 rounded-xl h-8 "
                                 type="number">
                         </div>
@@ -183,74 +246,18 @@
 
                 </div>
                 <div class="flex justify-around gap-12">
-                    <button type="button" onclick=""
-                        class=" bg-green-500 text-white border-solid border-2 rounded-full border-green-500 h-11 w-28 justify-end hover:bg-green-800 hover:border-green-800 duration-300" id="ShowFrom">Add
-                        Team</button>
                     <button type="button"
-                        class=" bg-white text-black border-solid border-2 rounded-full border-white h-11 w-28 justify-end" id="hideForm">Cancel</button>
+                        class=" bg-green-500 text-white border-solid border-2 rounded-full border-green-500 h-11 w-28 justify-end hover:bg-green-800 hover:border-green-800 duration-300"
+                        id="playedCreate">Add
+                        Player</button>
+                    <button type="button"
+                        class=" bg-white text-black border-solid border-2 rounded-full border-white h-11 w-28 justify-end"
+                        id="hideForm">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="relative w-36 h-52">
-        <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
-            class="absolute inset-0 w-full h-full object-cover" />
-
-
-        <div class="absolute inset-0 mb-2 flex flex-col items-center justify-center text-white p-2">
-
-            <div class="flex items-center">
-                <div class="flex flex-col justify-between items-center w-[10%] h-5">
-                    <span class="text-sm font-bold">
-                        <span class="text-yellow-600"></span>44</span>
-                    <span class="text-S font-semibold">DL</span>
-                </div>
-
-
-                <div class="">
-                    <img src="https://cdn.sofifa.net/players/192/985/25_120.png" alt="Player"
-                        class="w-16 h-16 rounded-md" />
-                </div>
-            </div>
-
-
-            <h3 class="text-center text-sm font-bold">name</h3>
-
-
-            <div class="flex justify-between items-center w-[30%]">
-                <div class="flex items-center">
-                    <img src="https://cdn.sofifa.net/flags/be.png" alt="Nationality" class="w-4 h-4 rounded-sm" />
-                </div>
-                <img src="https://cdn.sofifa.net/players/239/085/25_120.png" alt="Club" class="w-5 h-5" />
-            </div>
-
-
-            <div class="flex flex-col text-xs w-full px-2 h-16">
-                <div class="flex justify-around">
-                    <span>PAC:</span>
-                    <span>23</span>
-
-                    <span>SHO:</span>
-                    <span>22</span>
-                </div>
-                <div class="flex justify-around">
-                    <span>PAS:</span>
-                    <span>40</span>
-
-                    <span>DRI:</span>
-                    <span>34</span>
-                </div>
-                <div class="flex justify-around">
-                    <span>DEF:</span>
-                    <span>33</span>
-
-                    <span>PHY:</span>
-                    <span>56</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="h-fit w-full flex flex-wrap justify-around" id="bank"></div>
+    <div class="h-fit w-full flex flex-wrap justify-around bg-yellow-500" id="bank"></div>
     <script src="./js/main.js"></script>
 
 
