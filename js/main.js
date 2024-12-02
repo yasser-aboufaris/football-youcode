@@ -15,7 +15,7 @@ fetch("./players.json")
     .then((data) => {
         for (let i = 0; i < data.players.length; i++) {
             let jsonCartedHtml = `
-    <div class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-125">
+    <div data-position="${data.players[i].position}" data-player='${JSON.stringify(data.players[i])}' onclick="playerEvent(this)" class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-125">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -103,7 +103,8 @@ fetch("./players.json")
         </div>
   `
             document.getElementById('bank').insertAdjacentHTML("beforeEnd", jsonCartedHtml);
-           
+
+
 
 
             switch (data.players[i].position) {
@@ -143,6 +144,8 @@ fetch("./players.json")
             }
             console.log(GK)
         }
+
+
     })
 
 
@@ -180,14 +183,44 @@ function createPlayer(event) {
     let posStates = document.getElementById('positioning').value;
 
     //let rating = document.getElementById('').value;
-    console.log("1")
+    let playerData;
+    if (position == GK) {
+     playerData = {
+            name,
+            "photo": playerImage,
+            position,
+            "flag": playerFlag,
+            "logo": playerLogo,
+            "rating": 90,
+            "pace": paceStates,
+            "shooting": shootStates,
+            "passing": passStates,
+            "dribbling": dribStates,
+            "defending": defStates,
+            "physical": phyStates
+        }}
+    else {
+         playerData = {
+                name,
+                "photo": playerImage,
+                position,
+                "flag": playerFlag,
+                "logo": playerLogo,
+                "rating":90,
+                "diving": divStates,
+                "handling": handStates,
+                "kicking": kickStates,
+                "reflexes": refStates,
+                "speed": spdStates,
+                "positioning": posStates
+            }
+        }
 
-    
-    
 
 
-    let createdCard = `
-    <div class="relative w-36 h-52 player ${position} hover:scale-125">
+
+        let createdCard = `
+    <div data-position="${position}" data-player='${JSON.stringify(playerData)}' class="relative w-36 h-52 player ${position} hover:scale-125" onclick="playerEvent(this)">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -244,11 +277,11 @@ function createPlayer(event) {
                 </div>`
 
 
-            :
+                :
 
 
 
-            `<div class="flex flex-col text-xs w-full px-2 h-16">
+                `<div class="flex flex-col text-xs w-full px-2 h-16">
                 <div class="flex justify-around">
                     <span>PAC:</span>
                     <span>${paceStates}</span>
@@ -275,27 +308,43 @@ function createPlayer(event) {
         </div>
   `;
 
-    document.getElementById('bank').insertAdjacentHTML("beforeEnd", createdCard);
-}
-
-document.getElementById('playedCreate').addEventListener('click', createPlayer)
-function addStates(event) {
-    let selectedPosition = event.target.value
-    if (selectedPosition === 'GK') {
-        document.getElementById('playerStats').classList.add("hidden")
-        document.getElementById("GKstats").classList.remove("hidden");
-        console.log("1")
-    }
-    else {
-        document.getElementById('playerStats').classList.remove("hidden")
-        document.getElementById("GKstats").classList.add("hidden");
+        document.getElementById('bank').insertAdjacentHTML("beforeEnd", createdCard);
     }
 
-}
-document.getElementById('Position').addEventListener('change', addStates)
+    document.getElementById('playedCreate').addEventListener('click', createPlayer)
+    function addStates(event) {
+        let selectedPosition = event.target.value
+        if (selectedPosition === 'GK') {
+            document.getElementById('playerStats').classList.add("hidden")
+            document.getElementById("GKstats").classList.remove("hidden");
+            console.log("1")
+        }
+        else {
+            document.getElementById('playerStats').classList.remove("hidden")
+            document.getElementById("GKstats").classList.add("hidden");
+        }
+
+    }
+    document.getElementById('Position').addEventListener('change', addStates)
 
 
 
-function addToField() {
+    
 
-}
+    function playerEvent(playerElement) {
+       
+        let playerData = JSON.parse(playerElement.getAttribute("data-player"));
+        let emptyCard = document.querySelector(`[data-position='${playerData.position}']`);
+
+        emptyCard.replaceWith(playerElement)
+        console.log(playerData)
+    }
+    function playerEvent(playerElement) {
+        
+        
+        let playerData = JSON.parse(playerElement.getAttribute("data-player"));
+        let replaced = document.querySelector("#bank");
+
+        replaced.replaceWith(playerElement)
+        console.log(playerData)
+    }
