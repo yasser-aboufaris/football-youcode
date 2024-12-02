@@ -15,7 +15,7 @@ fetch("./players.json")
     .then((data) => {
         for (let i = 0; i < data.players.length; i++) {
             let jsonCartedHtml = `
-    <div data-position="${data.players[i].position}" data-player='${JSON.stringify(data.players[i])}' onclick="playerEvent(this)" class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-125">
+    <div data-position="${data.players[i].position}" data-player='${JSON.stringify(data.players[i])}' onclick="changePlace(this)" class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-125">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -163,7 +163,7 @@ document.getElementById("hideForm").addEventListener("click", function () {
 function createPlayer(event) {
 
     let name = document.getElementById('addedPlayerName').value;
-    let position = document.getElementById('Position').value;//position du joueur
+    let position = document.getElementById('Position').value;
     let playerImage = document.getElementById('playerImgUrl').value;
     let playerFlag = document.getElementById('countryUrl').value;
     let playerLogo = document.getElementById('teamUrl').value;
@@ -341,10 +341,29 @@ function createPlayer(event) {
     }
     function playerEvent(playerElement) {
         
-        
+
         let playerData = JSON.parse(playerElement.getAttribute("data-player"));
-        let replaced = document.querySelector("#bank");
+        let replaced = document.getElementById("#bank");
 
         replaced.replaceWith(playerElement)
         console.log(playerData)
     }
+ 
+    
+  function changePlace(playerElement){
+    let ElementContainer = playerElement.parentNode.id;
+    if(ElementContainer==bank.id){
+    console.log(ElementContainer)
+    let playerData = JSON.parse(playerElement.getAttribute("data-player"));
+    let emptyCard = document.querySelector(`[data-position='${playerData.position}']`);
+
+    emptyCard.replaceWith(playerElement)
+    console.log(playerData)}
+    else{
+        let playerData = JSON.parse(playerElement.getAttribute("data-player"));
+        let Reserve = document.getElementById("bank");
+
+        Reserve.appendChild(playerElement);
+        console.log(playerData);
+    }
+  }
