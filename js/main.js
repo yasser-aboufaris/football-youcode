@@ -1,10 +1,9 @@
-
 fetch("./players.json")
     .then((response) => response.json())
     .then((data) => {
         for (let i = 0; i < data.players.length; i++) {
             let jsonCartedHtml = `
-    <div class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-110">
+    <div class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-125">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -17,8 +16,6 @@ fetch("./players.json")
                         <span class="text-yellow-600"></span>${data.players[i].rating}</span>
                     <span class="text-S font-semibold shadow-text">${data.players[i].position}</span>
                 </div>
-
-
                 <div class="">
                     <img src="${data.players[i].photo}" alt="Player"
                         class="w-16 h-16 rounded-md" />
@@ -37,23 +34,25 @@ fetch("./players.json")
             </div>
 
 
+
+
             ${data.players[i].position === "GK" ? ` <div class="flex flex-col text-xs w-full px-2 h-16">
                 <div class="flex justify-around">
-                    <span>PAC:</span>
+                    <span>DIV:</span>
                     <span>${data.players[i].diving}</span>
 
-                    <span>SHO:</span>
+                    <span>HAN:</span>
                     <span>${data.players[i].handling}</span>
                 </div>
                 <div class="flex justify-around">
-                    <span>PAS:</span>
+                    <span>KIC:</span>
                     <span>${data.players[i].kicking}</span>
 
-                    <span>DRI:</span>
+                    <span>REF:</span>
                     <span>${data.players[i].reflexes}</span>
                 </div>
                 <div class="flex justify-around">
-                    <span>DEF:</span>
+                    <span>SPE:</span>
                     <span>${data.players[i].speed}</span>
 
                     <span>PHY:</span>
@@ -92,8 +91,15 @@ fetch("./players.json")
         </div>
   `
             document.getElementById('bank').insertAdjacentHTML("beforeEnd", jsonCartedHtml);
+            switch(data.players[i].position){
+                case GK:
+                    {name1="${data.players[i].position}",}
+            }
         }
     })
+
+
+
 
 
 ///////////////////////////
@@ -235,18 +241,8 @@ function addStates(event) {
 }
 document.getElementById('Position').addEventListener('change', addStates)
 
-function addToField () {
-    console.log(1);
-    let bank = document.querySelectorAll('#bank .player');
-    let tmparr = Array.from(bank);
-    
-    tmparr.forEach((element) => {
-        element.classList.add('hidden');
-    })
-    
-    //let player = document.getElementsByClassName('player')
 
-    console.log(bank);
+
+function addToField(){
+
 }
-let testButton = document.getElementById('addd')
-testButton.addEventListener("click", addToField);
