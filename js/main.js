@@ -1,3 +1,15 @@
+let GK = [];
+let RW = [];
+let CML = [];
+let CBL = [];
+let CBR = [];
+let LW = [];
+let CMR = [];
+let ST = [];
+let LB = [];
+let RB = [];
+let CMC = [];
+
 fetch("./players.json")
     .then((response) => response.json())
     .then((data) => {
@@ -58,13 +70,13 @@ fetch("./players.json")
                     <span>PHY:</span>
                     <span>${data.players[i].positioning}</span>
                 </div>`
-                
-                
-                : 
+
+
+                    :
 
 
 
-                `<div class="flex flex-col text-xs w-full px-2 h-16">
+                    `<div class="flex flex-col text-xs w-full px-2 h-16">
                 <div class="flex justify-around">
                     <span>PAC:</span>
                     <span>${data.players[i].pace}</span>
@@ -91,24 +103,45 @@ fetch("./players.json")
         </div>
   `
             document.getElementById('bank').insertAdjacentHTML("beforeEnd", jsonCartedHtml);
-            let GK = [];
-            let RW = [];
-            let CML = [];
-            let CBL = [];
-            let CBR = [];
-            let LW = [];
-            let CMR = [];
-            let ST = [];
-            let LB = [];
-            let RB = [];
-            let CMC = [];
-            switch(data.players[i].position){
-                case GK:
-                    GK.push({name1:"${data.players[i].position}",})
-                    return;
-                case RW : 
-                    RW.push();    
+           
+
+
+            switch (data.players[i].position) {
+                case "GK":
+                    GK.push(data.players[i]);
+                    break;
+                case "RW":
+                    RW.push(data.players[i]);
+                    break;
+                case "CML":
+                    CML.push(data.players[i]);
+                    break;
+                case "CBL":
+                    break;
+                case "CBR":
+                    CBR.push(data.players[i]);
+                    break;
+                case "LW":
+                    LW.push(data.players[i]);
+                    break;
+                case "CMR":
+                    CMR.push(data.players[i]);
+                    break;
+                case "ST":
+                    ST.push(data.players[i]);
+                    break;
+                case "LB":
+                    LB.push(data.players[i]);
+                    break;
+                case "RB":
+                    RB.push(data.players[i]);
+                    break;
+                case "CMC":
+                    CMC.push(data.players[i]);
+                    break;
+
             }
+            console.log(GK)
         }
     })
 
@@ -125,6 +158,7 @@ document.getElementById("hideForm").addEventListener("click", function () {
     document.getElementById("addForm").classList.add("hidden");
 });
 function createPlayer(event) {
+
     let name = document.getElementById('addedPlayerName').value;
     let position = document.getElementById('Position').value;//position du joueur
     let playerImage = document.getElementById('playerImgUrl').value;
@@ -147,6 +181,11 @@ function createPlayer(event) {
 
     //let rating = document.getElementById('').value;
     console.log("1")
+
+    
+    
+
+
     let createdCard = `
     <div class="relative w-36 h-52 player ${position} hover:scale-125">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
@@ -203,13 +242,13 @@ function createPlayer(event) {
                     <span>PHY:</span>
                     <span>${posStates}</span>
                 </div>`
-                
-                
-                : 
 
 
-                
-                `<div class="flex flex-col text-xs w-full px-2 h-16">
+            :
+
+
+
+            `<div class="flex flex-col text-xs w-full px-2 h-16">
                 <div class="flex justify-around">
                     <span>PAC:</span>
                     <span>${paceStates}</span>
@@ -238,7 +277,7 @@ function createPlayer(event) {
 
     document.getElementById('bank').insertAdjacentHTML("beforeEnd", createdCard);
 }
- 
+
 document.getElementById('playedCreate').addEventListener('click', createPlayer)
 function addStates(event) {
     let selectedPosition = event.target.value
@@ -257,6 +296,6 @@ document.getElementById('Position').addEventListener('change', addStates)
 
 
 
-function addToField(){
+function addToField() {
 
 }
