@@ -91,9 +91,23 @@ fetch("./players.json")
         </div>
   `
             document.getElementById('bank').insertAdjacentHTML("beforeEnd", jsonCartedHtml);
+            let GK = [];
+            let RW = [];
+            let CML = [];
+            let CBL = [];
+            let CBR = [];
+            let LW = [];
+            let CMR = [];
+            let ST = [];
+            let LB = [];
+            let RB = [];
+            let CMC = [];
             switch(data.players[i].position){
                 case GK:
-                    {name1="${data.players[i].position}",}
+                    GK.push({name1:"${data.players[i].position}",})
+                    return;
+                case RW : 
+                    RW.push();    
             }
         }
     })
