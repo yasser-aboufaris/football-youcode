@@ -374,3 +374,4 @@ function createPlayer(event) {
     tempDiv.innerHTML = html;
     return tempDiv.firstElementChild;
   }
+  
