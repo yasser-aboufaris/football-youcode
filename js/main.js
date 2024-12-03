@@ -15,7 +15,7 @@ fetch("./players.json")
     .then((data) => {
         for (let i = 0; i < data.players.length; i++) {
             let jsonCartedHtml = `
-    <div data-position="${data.players[i].position}" data-player='${JSON.stringify(data.players[i])}' onclick="changePlace(this)" class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-125">
+    <div data-position="${JSON.stringify(data.players[i].position)}" data-player='${JSON.stringify(data.players[i])}' onclick="changePlace(this)" class="relative w-36 h-52 player scale-90 ${data.players[i].position} hover:scale-125">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -329,40 +329,40 @@ function createPlayer(event) {
 
 
 
-    
 
-    function playerEvent(playerElement) {
-       
-        let playerData = JSON.parse(playerElement.getAttribute("data-player"));
-        let emptyCard = document.querySelector(`[data-position='${playerData.position}']`);
-
-        emptyCard.replaceWith(playerElement)
-        console.log(playerData)
-    }
-    function playerEvent(playerElement) {
-        
-
-        let playerData = JSON.parse(playerElement.getAttribute("data-player"));
-        let replaced = document.getElementById("#bank");
-
-        replaced.replaceWith(playerElement)
-        console.log(playerData)
-    }
- 
     
   function changePlace(playerElement){
     let ElementContainer = playerElement.parentNode.id;
     if(ElementContainer==bank.id){
-    console.log(ElementContainer)
-    let playerData = JSON.parse(playerElement.getAttribute("data-player"));
+    let playerData = JSON.parse(playerElement.dataset.player);
     let emptyCard = document.querySelector(`[data-position='${playerData.position}']`);
 
     emptyCard.replaceWith(playerElement)
     console.log(playerData)}
     else{
-        let playerData = JSON.parse(playerElement.getAttribute("data-player"));
+        console.log(1)
+        let playerData = playerElement.dataset.player;
+        console.log(playerData);
+        
         let Reserve = document.getElementById("bank");
+        let pose = playerElement.dataset.position;
 
+
+
+        let emptyCard = `<div data-position="${pose}" class="h-40 w-24 flex justify-center items-center"
+                                style="background-image: url(https://www.futbin.com/design2/img/static/evolutions/placeholder-card-normal.webp); background-repeat: no-repeat; background-size: contain;">
+
+                                <div class="hover:scale-125 h-fit addingButton">
+                                    <svg viewBox="0 0 36 42" fill="none" width="36">
+                                        <path
+                                            d="M18.6275 41.711L18.3137 41.0298C18.1146 41.1215 17.8854 41.1215 17.6863 41.0298L17.3726 41.711L17.6863 41.0298L1.18627 33.4311C0.920355 33.3087 0.75 33.0427 0.75 32.7499V8.7248C0.75 8.42506 0.928458 8.15411 1.20383 8.03575L17.7038 0.943648C17.8929 0.862375 18.1071 0.862375 18.2962 0.943648L34.7962 8.03575C35.0715 8.15411 35.25 8.42506 35.25 8.7248V32.7499C35.25 33.0427 35.0796 33.3087 34.8137 33.4311L18.3137 41.0298L18.6275 41.711Z"
+                                            stroke="limegreen" stroke-width="1.5"></path>
+                                    </svg>
+                                </div>
+                            </div>`;
+
+
+        playerElement.replaceWith(emptyCard);
         Reserve.appendChild(playerElement);
         console.log(playerData);
     }
