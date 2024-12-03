@@ -349,7 +349,7 @@ function createPlayer(event) {
 
 
 
-        let emptyCard = `<div data-position="${pose}" class="h-40 w-24 flex justify-center items-center"
+        let emptyCard = convertHtmlToNode(`<div data-position="${pose}" class="h-40 w-24 flex justify-center items-center"
                                 style="background-image: url(https://www.futbin.com/design2/img/static/evolutions/placeholder-card-normal.webp); background-repeat: no-repeat; background-size: contain;">
 
                                 <div class="hover:scale-125 h-fit addingButton">
@@ -359,11 +359,18 @@ function createPlayer(event) {
                                             stroke="limegreen" stroke-width="1.5"></path>
                                     </svg>
                                 </div>
-                            </div>`;
+                            </div>`);
 
 
         playerElement.replaceWith(emptyCard);
         Reserve.appendChild(playerElement);
         console.log(playerData);
     }
+  }
+
+
+  function convertHtmlToNode(html) {
+    let tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
+    return tempDiv.firstElementChild;
   }
