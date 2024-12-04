@@ -220,7 +220,7 @@ function createPlayer(event) {
 
 
         let createdCard = `
-    <div data-position="${JSON.stringify(position)}" data-player='${JSON.stringify(player)}' class="relative w-36 h-52 player ${position} hover:scale-125" onclick="playerEvent(this)">
+    <div data-position="${JSON.stringify(position)}" data-player='${JSON.stringify(player)}' class="relative w-36 h-52 player ${position} hover:scale-125" onclick="changePlace(this)">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -309,6 +309,7 @@ function createPlayer(event) {
   `;
 
         document.getElementById('bank').insertAdjacentHTML("beforeEnd", createdCard);
+        document.getElementById("addForm").classList.add("hidden");
     }
 
     document.getElementById('playedCreate').addEventListener('click', createPlayer)

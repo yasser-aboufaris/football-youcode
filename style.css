@@ -1,3 +1,10 @@
 .body{
     background-image: url("./img");
 }
+
+
+@media (max-width: 764px) {
+    .terrain{
+        scale: 70%;
+    }
+}
