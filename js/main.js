@@ -185,10 +185,10 @@ function createPlayer(event) {
     //let rating = document.getElementById('').value;
     let playerData;
     if (position == GK) {
-     playerData = {
-            name,
+     player = {
+            "name":name,
             "photo": playerImage,
-            position,
+            "position":position,
             "flag": playerFlag,
             "logo": playerLogo,
             "rating": 90,
@@ -200,10 +200,10 @@ function createPlayer(event) {
             "physical": phyStates
         }}
     else {
-         playerData = {
-                name,
+         player = {
+                "name":name,
                 "photo": playerImage,
-                position,
+               "position": position,
                 "flag": playerFlag,
                 "logo": playerLogo,
                 "rating":90,
@@ -220,7 +220,7 @@ function createPlayer(event) {
 
 
         let createdCard = `
-    <div data-position="${position}" data-player='${JSON.stringify(playerData)}' class="relative w-36 h-52 player ${position} hover:scale-125" onclick="playerEvent(this)">
+    <div data-position="${JSON.stringify(position)}" data-player='${JSON.stringify(player)}' class="relative w-36 h-52 player ${position} hover:scale-125" onclick="playerEvent(this)">
         <img src="./img/player-carte-removebg-preview.png" alt="Player Card Background"
             class="absolute inset-0 w-full h-full object-cover" />
 
@@ -333,21 +333,18 @@ function createPlayer(event) {
     
   function changePlace(playerElement){
     let ElementContainer = playerElement.parentNode.id;
-    if(ElementContainer==bank.id){
     let playerData = JSON.parse(playerElement.dataset.player);
+    if(ElementContainer==bank.id){
     let emptyCard = document.querySelector(`[data-position='${playerData.position}']`);
 
     emptyCard.replaceWith(playerElement)
-    console.log(playerData)}
+    }
     else{
-        console.log(1)
-        let playerData = playerElement.dataset.player;
-        console.log(playerData);
         
         let Reserve = document.getElementById("bank");
-        let pose = playerElement.dataset.position;
+        let pose = playerData.position;
 
-
+    console.log(pose)
 
         let emptyCard = convertHtmlToNode(`<div data-position="${pose}" class="h-40 w-24 flex justify-center items-center"
                                 style="background-image: url(https://www.futbin.com/design2/img/static/evolutions/placeholder-card-normal.webp); background-repeat: no-repeat; background-size: contain;">
@@ -360,11 +357,11 @@ function createPlayer(event) {
                                     </svg>
                                 </div>
                             </div>`);
-
+       
 
         playerElement.replaceWith(emptyCard);
         Reserve.appendChild(playerElement);
-        console.log(playerData);
+        
     }
   }
 
