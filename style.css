@@ -1,10 +1,15 @@
-.body{
-    background-image: url("./img");
+.bg-body{
+    background-image: url(./img/bg1.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
 @media (max-width: 764px) {
     .terrain{
         scale: 70%;
+    }
+    .hide{
+        display: none;
     }
 }
