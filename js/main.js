@@ -181,6 +181,8 @@ function createPlayer(event) {
     let refStates = document.getElementById('reflex').value;
     let spdStates = document.getElementById('speed').value;
     let posStates = document.getElementById('positioning').value;
+    ///////////////////////////////////////////////////////////////////////////////
+    const nameRegex = /^[a-zA-Z0-9]{1,12}$/;
 
     //let rating = document.getElementById('').value;
     let playerData;
@@ -216,8 +218,10 @@ function createPlayer(event) {
             }
         }
 
+        const regexName = /^[a-z ]{1,12}$/;
+        const regexURL = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-
+if(regexName.test(name)&&regexURL.test(playerImage)){
 
         let createdCard = `
     <div data-position="${JSON.stringify(position)}" data-player='${JSON.stringify(player)}' class="relative w-36 h-52 player ${position} hover:scale-125" onclick="changePlace(this)">
@@ -307,7 +311,7 @@ function createPlayer(event) {
             
         </div>
   `;
-
+            }
         document.getElementById('bank').insertAdjacentHTML("beforeEnd", createdCard);
         document.getElementById("addForm").classList.add("hidden");
     }
