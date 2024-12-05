@@ -182,10 +182,11 @@ function createPlayer(event) {
     let spdStates = document.getElementById('speed').value;
     let posStates = document.getElementById('positioning').value;
     ///////////////////////////////////////////////////////////////////////////////
-    const nameRegex = /^[a-zA-Z0-9]{1,12}$/;
+    
+    
 
     //let rating = document.getElementById('').value;
-    let playerData;
+    let player;
     if (position == GK) {
      player = {
             "name":name,
@@ -219,9 +220,15 @@ function createPlayer(event) {
         }
 
         const regexName = /^[a-z ]{1,12}$/;
-        const regexURL = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        const regexStat = /^[1-9][0-9]?$/;
 
-if(regexName.test(name)&&regexURL.test(playerImage)){
+if(regexName.test(name)&&((regexStat.test(paceStates)|| regexStat(divStates))&&
+(regexStat.test(shootStates)||regexStat.test(handStates))&&
+(regexStat.test(passStates)||regexStat.test(kickStates))&&
+(regexStat.test(dribStates)||regexStat.test(refStates))&&/////////////////////4
+(regexStat.test(defStates)||regexStat.test(spdStates))&&/////////////////////////////////5
+(regexStat.test(phyStates)||regexStat.test(posStates))////////////////////////////6
+)){ console.log(1)
 
         let createdCard = `
     <div data-position="${JSON.stringify(position)}" data-player='${JSON.stringify(player)}' class="relative w-36 h-52 player ${position} hover:scale-125" onclick="changePlace(this)">
@@ -311,9 +318,9 @@ if(regexName.test(name)&&regexURL.test(playerImage)){
             
         </div>
   `;
-            }
+            
         document.getElementById('bank').insertAdjacentHTML("beforeEnd", createdCard);
-        document.getElementById("addForm").classList.add("hidden");
+        document.getElementById("addForm").classList.add("hidden");}
     }
 
     document.getElementById('playedCreate').addEventListener('click', createPlayer)
